@@ -75,3 +75,10 @@ export const Author = styled.Text`
   font-size: 13px;
   margin-top: 2px;
 `;
+
+export const Repository = styled.Text`
+  color: #555;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 2px;
+`;

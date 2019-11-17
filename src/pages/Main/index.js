@@ -15,8 +15,10 @@ import {
   Avatar,
   Name,
   Bio,
+  ProfileButtonsContainer,
   ProfileButton,
   ProfileButtonText,
+  DeleteButton,
 } from './styles';
 
 export default class Main extends Component {
@@ -75,6 +77,14 @@ export default class Main extends Component {
     });
   };
 
+  handleDelete(userName) {
+    const { users } = this.state;
+
+    this.setState({
+      users: users.filter(user => user.name !== userName),
+    });
+  }
+
   handleNavigate = user => {
     const { navigation } = this.props;
 
@@ -117,9 +127,14 @@ export default class Main extends Component {
               <Avatar source={{ uri: item.avatar }} />
               <Name>{item.name}</Name>
               <Bio>{item.bio}</Bio>
-              <ProfileButton onPress={() => this.handleNavigate(item)}>
-                <ProfileButtonText>See profile</ProfileButtonText>
-              </ProfileButton>
+              <ProfileButtonsContainer>
+                <ProfileButton onPress={() => this.handleNavigate(item)}>
+                  <ProfileButtonText>See profile</ProfileButtonText>
+                </ProfileButton>
+                <DeleteButton onPress={() => this.handleDelete(item.name)}>
+                  <Icon name="close" size={20} color="#fff" />
+                </DeleteButton>
+              </ProfileButtonsContainer>
             </User>
           )}
         />
